@@ -9,7 +9,7 @@ html{
 	outline-width: 5px;
 	outline-color: #FCCA46;
 	width: 70%;
-	height: 80%;
+	height: 85%;
 	left: 15%;
 	top: 80px;
 	z-index: 5;
@@ -25,6 +25,7 @@ html{
 
 h1{
 	position: relative;
+	margin-top: -2%;
 	width: 100%;
 	text-align: center;
 	font-size: 64px;
@@ -39,8 +40,8 @@ li{
 	font-size: 32px;
 }
 
-#contacts li{
-	font-size: 400%;	
+#contacts{
+	bottom: 80%;
 }
 
 #tel{
