@@ -2,8 +2,8 @@ keys = {a: 0, d: 0, s: 0, w:0, ArrowUp: 0, ArrowDown: 0, ArrowLeft: 0, ArrowRigh
 
 function updateKeys(){
 	addEventListener("touchstart", (event) =>{
-		hero.position.x = event.clientX - 65
-		hero.position.y = event.clientY - 95
+		hero.position.x = event.pageX - 65
+		hero.position.y = event.pageY - 95
 	})
 	addEventListener("keydown", (event) =>{
 			keys[event.key] = 1
