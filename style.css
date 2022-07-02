@@ -1,0 +1,78 @@
+html{
+	background-color: black;
+}
+
+#mainElements{
+	position: absolute;
+	background-color: #FE7F2D;
+	outline-style: solid;
+	outline-width: 5px;
+	outline-color: #FCCA46;
+	width: 900px;
+	height: 500px;
+	left: 300px;
+	top: 80px;
+	z-index: 5;
+}
+
+#contacts{
+	position: relative;
+	top: 50px;
+	left: 40px;
+	display: flex;
+	font-size: 8px;
+}
+
+h1{
+	position: relative;
+	width: 100%;
+	text-align: center;
+	font-size: 64px;
+	text-decoration: underline;
+	text-shadow: 20px;
+	margin-right: 50px;
+}
+
+li{
+	width: 90%;
+	padding-left: 5px;
+	font-size: 32px;
+}
+
+#contacts li{
+	
+}
+
+#tel{
+	list-style-image: url("Assets/tel.png");
+
+}
+
+#facebook{
+	list-style-image: url("Assets/facebook.png");
+
+}
+
+#instagram{
+	list-style-image: url("Assets/instagram.png");
+
+}
+
+#itch{
+	list-style-image: url("Assets/itch.png");
+
+}
+
+#BG{
+	width: 100%;
+	height: 615px;
+	background-color: #0C7489;
+}
+
+#hero{
+	width: 131px;
+	height: 142px;
+	position: absolute;
+	left: 0px;
+	z-index: 6;
+}
