@@ -9,7 +9,7 @@ html{
 	outline-width: 5px;
 	outline-color: #FCCA46;
 	width: 70%;
-	height: 500px;
+	height: 80%;
 	left: 15%;
 	top: 80px;
 	z-index: 5;
@@ -40,7 +40,7 @@ li{
 }
 
 #contacts li{
-	
+	font-size: 400%;	
 }
 
 #tel{
