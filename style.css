@@ -8,9 +8,9 @@ html{
 	outline-style: solid;
 	outline-width: 5px;
 	outline-color: #FCCA46;
-	width: 900px;
+	width: 70%;
 	height: 500px;
-	left: 300px;
+	left: 15%;
 	top: 80px;
 	z-index: 5;
 }
@@ -65,7 +65,7 @@ li{
 
 #BG{
 	width: 100%;
-	height: 615px;
+	height: 100%;
 	background-color: #0C7489;
 }
 
