@@ -1,13 +1,16 @@
 const bgCanvas = document.getElementById("BG")
 const bgCtx = bgCanvas.getContext("2d")
 
-bgCanvas.height = window.innerWidth
+bgCanvas.width = window.innerWidth
+bgCanvas.height = window.innerHeight
 
-const heroCanvas = document.getElementById("hero")
-const heroCtx = heroCanvas.getContext("2d")
+const fish = [new player({x: -32, y: Math.floor(Math.random() * bgCanvas.height)}, 2,Math.floor(Math.random() * 150) + 100),
+				new player({x: -32, y: Math.floor(Math.random() * bgCanvas.height)}, 2,Math.floor(Math.random() * 150) + 100),
+				new player({x: -32, y: Math.floor(Math.random() * bgCanvas.height)}, 2,Math.floor(Math.random() * 150) + 100),
+				new player({x: -32, y: Math.floor(Math.random() * bgCanvas.height)}, 2,Math.floor(Math.random() * 150) + 100),
+				new player({x: -32, y: Math.floor(Math.random() * bgCanvas.height)}, 2,Math.floor(Math.random() * 150) + 100),
+				new player({x: -32, y: Math.floor(Math.random() * bgCanvas.height)}, 2,Math.floor(Math.random() * 150) + 100)]
 
-heroCanvas.width = 131
-heroCanvas.height = 142
 
 var timeElapsed = 0
 
@@ -15,9 +18,9 @@ function update(time){
 	requestAnimationFrame(update)
 	var delta = (time - timeElapsed) / 1000
 	timeElapsed = time
-	updateKeys()
-	heroCtx.clearRect(0, 0, heroCanvas.width, heroCanvas.height)
-	hero.loop(delta)
+	bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height)
+
+	fish.forEach((f) => {f.loop(delta)})
 }
 
 requestAnimationFrame(update)

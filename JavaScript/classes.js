@@ -1,81 +1,81 @@
-keys = {a: 0, d: 0, s: 0, w:0, ArrowUp: 0, ArrowDown: 0, ArrowLeft: 0, ArrowRight: 0}
-
-function updateKeys(){
-	addEventListener("touchstart", (event) =>{
-		hero.position.x = event.pageX - 65
-		hero.position.y = event.pageY - 95
-	})
-	addEventListener("keydown", (event) =>{
-			keys[event.key] = 1
-	})
-	addEventListener("keyup", (event) =>{
-		keys[event.key] = 0
-	})	
-}
-
 class spriteSheet{
 	frameTime = 0
-	flip = -1
-	constructor(src, position, scale, frameSize){
+	constructor(src, position, scale, size){
 		this.img = new Image()
 		this.img.src = src
 		this.img.id = "hero"
 		this.position = position
 		this.scale = scale
-		this.frameSize = frameSize
-		this.chunkRect = {x: 0, y: 0, width: frameSize.x, height: frameSize.y}
+		this.size = size
+		this.chunkRect = {x: 0, y: 0, width: size.x, height: size.y}
 
 	}
 
 	draw(){
-		heroCanvas.style.left = this.position.x + "px"
-		heroCanvas.style.top = this.position.y + "px"
-		heroCtx.drawImage(this.img, this.chunkRect.x, this.chunkRect.y, 131, 142,
-					 	0, 0, this.frameSize.x * this.scale, this.frameSize.y * this.scale)
+		bgCtx.drawImage(this.img, this.chunkRect.x, 0, this.size.x, this.size.y,
+							this.position.x, this.position.y, this.size.x * this.scale, this.size.y * this.scale)
+	}
+}
+
+class Bubble extends spriteSheet{
+	constructor(position, scale, speed){
+		super("./Assets/Bubbles.png", position, scale, {x: 12, y: 12})
+		this.speed = speed
+		this.oringinPos = position.x
+		this.running = true;
+	}
+
+	animate(delta){
+		if (Math.abs(this.position.x - this.oringinPos) > 30){
+			this.running = false;
+		}
+		else{
+			this.position.x -= this.speed * delta;
+			this.position.y -= this.speed / 2 * delta;
+			this.draw()
+		}
 	}
 }
 
 class player extends spriteSheet{
-	inputVector = {x: 0, y: 0}
-	animations = {"idle": 0, "run": 1, "jump": 2, "attack": 3, "stun": 4}
-	constructor(src, position, scale, frameSize, speed){
-		super(src, position, scale, frameSize)
+	constructor(position, scale, speed){
+		super("./Assets/Sheet.png", position, scale, {x: 32, y: 32})
 		this.speed = speed
+		this.bubble = new Bubble({x: position.x - 16, y: position.y}, 1, 50)
 	}
 
 	animate(delta){
 		this.frameTime += delta
-		if (this.frameTime > 0.05){
+		if (this.bubble.running){
+			this.bubble.animate(delta)
+		}
+		else{
+			this.bubble = new Bubble({x: this.position.x - 16, y: this.position.y}, 1, 50)
+		}
+		if (this.frameTime > 0.2){
 			this.frameTime = 0
-			if (this.chunkRect.x + this.frameSize.x > this.frameSize.x * 7){
+			if (this.chunkRect.x + 32 > 32){
 				this.chunkRect.x = 0
 			}
 			else{
-				this.chunkRect.x += this.frameSize.x
+				this.chunkRect.x += 32
 			}
 		}
-
-		if (this.inputVector.x || this.inputVector.y){
-			this.chunkRect.y = this.animations.run * this.frameSize.y
-		}
-		else{
-			this.chunkRect.y = this.animations.idle * this.frameSize.y
-		}
+	}
+	reload(){
+		this.position.x = -32
+		this.position.y = Math.floor(Math.random() * bgCanvas.height)
+		this.scale = Math.floor(Math.random() * 4) + 1.5
+		this.speed = Math.floor(Math.random() * 150) + 100
 	}
 
 	move(delta){
-		this.inputVector.x = keys.d - keys.a
-		if (!this.inputVector.x){
-			this.inputVector.x = (keys.ArrowRight - keys.ArrowLeft)
+		if (this.position.x > bgCanvas.width){
+			this.reload()
 		}
-		this.inputVector.y = keys.s - keys.w
-		if (!this.inputVector.y){
-			(this.inputVector.y = keys.ArrowDown - keys.ArrowUp)
-		}
-		this.position.x += this.inputVector.x * this.speed * delta
-		this.position.y += this.inputVector.y * this.speed * delta
+		this.position.x += this.speed * delta
 		this.animate(delta)
-	}
+		}
 
 	loop(delta){
 		this.move(delta)
@@ -84,4 +84,3 @@ class player extends spriteSheet{
 }
 
 //const hero = new player("./Assets/Hero.png", {x: 10, y: 10}, 1, {x: 131, y: 142} ,250)
-const hero = new player("./Assets/Hero.png", {x: 0, y: 0}, 1, {x: 131, y: 142} ,250)
