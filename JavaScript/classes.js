@@ -3,7 +3,6 @@ class spriteSheet{
 	constructor(src, position, scale, size){
 		this.img = new Image()
 		this.img.src = src
-		this.img.id = "hero"
 		this.position = position
 		this.scale = scale
 		this.size = size
@@ -82,5 +81,3 @@ class player extends spriteSheet{
 		this.draw()
 	}
 }
-
-//const hero = new player("./Assets/Hero.png", {x: 10, y: 10}, 1, {x: 131, y: 142} ,250)

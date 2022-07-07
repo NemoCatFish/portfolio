@@ -4,10 +4,9 @@ html{
 
 #mainElements{
 	position: absolute;
-	background-color: #C5D8D1;
+	background-image: radial-gradient(circle, #22e39c, #00c7cd, #00a4ff, #0077ff, #2e12eb);
 	outline-style: solid;
 	outline-width: 5px;
-	outline-color: #F4EDEA;
 	width: 70%;
 	height: 85%;
 	left: 15%;
@@ -41,7 +40,6 @@ li{
 	padding-left: 5px;
 	font-size: 32px;
 	color: #244226;
-	
 }
 
 #contacts{
@@ -71,13 +69,6 @@ li{
 #BG{
 	width: 100%;
 	height: 100%;
-	background-color: #0C7489;
-}
+	background: linear-gradient(to bottom right, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(12,116,137,1) 100%);
 
-#hero{
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	left: 0px;
-	z-index: 6;
 }
